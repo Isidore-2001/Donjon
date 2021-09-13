@@ -4,6 +4,7 @@
 package character;
 
 
+
 import java.util.ArrayList;
 
 import room.room;
@@ -58,7 +59,50 @@ public class Player extends Character{
 		}
 	}
 	
+	public ArrayList<Item> getRoomItem(){
+		return this.room.getItem();
+	}
 	
+	public void describeAllItemInroom() {
+		ArrayList<Item> item = this.getRoomItem();
+		System.out.println("Voici les Objests dont vous disposez pour battre l'adversaire");
+		for(Item i: item) {
+			System.out.println(i.toString());
+	}
+	}
+	
+	public boolean existItemInRoom() {
+		ArrayList<Item> item = this.getRoomItem();
+		return item.size() != 0;
+	}
+		
+	public void giveGold(Player p, int g) {
+		p.addGold(g);
+	}
+	
+	public Map<Direction,room> getDirections(){
+		return this.room.getDirection();
+	}
+	
+	public void receiveGold(int g) {
+		this.addGold(g);
+	}
+		
+	public void addAction(Action a) {
+		this.room.addActions(a);
+		
+	}
+	public void setAction(Action a, Action b) {
+		this.room.getActions().set(a,b);
+	}
+	
+	public void changeRoom(Direction d) {
+		this.room = this.changeRoom(d);
+	}
+	
+	public void removeAction(Action a) {
+		this.room.removeActions(a);
+	}
 	
 	
 

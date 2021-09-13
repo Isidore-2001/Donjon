@@ -1,7 +1,8 @@
+package character;
 /**
  * 
  */
-package character;
+
 import room.Monster;
 import room.room;
 

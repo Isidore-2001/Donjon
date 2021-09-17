@@ -82,6 +82,10 @@ public class room {
 		return this.item;
 	}
 	
+	public Item getItemWithIndex(int i) {
+		return this.item.get(i);
+	}
+	
 	public void addDirection(Direction d, room r) {
 		this.direction.put(d, r);
 	}
@@ -129,7 +133,13 @@ public class room {
 	}
 	
 	public ArrayList<action> getAllPossibilitiesActions() {
-		return this.action;
+		ArrayList<action> res = new ArrayList<action>();
+		for (action a: this.action) {
+			if (a.isPossible()) {
+				res.add(a);
+			}
+		}
+		return res;
 		
 	}
 	

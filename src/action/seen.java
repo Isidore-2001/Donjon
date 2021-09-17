@@ -29,7 +29,7 @@ public class seen implements action {
 
 	public void use() {
 		// TODO Auto-generated method stub
-		String res = "Cette salle contient ";
+		String res = " ============ Cette salle contient =========================";
 		for (Monster m: this.r.getMonster()) {
 			res+= "le monstre " + m.toString() + ":\n ";
 		}
@@ -57,6 +57,11 @@ public class seen implements action {
 	public room getRoom() {
 		// TODO Auto-generated method stub
 		return this.r;
+	}
+
+	public boolean isPossible() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

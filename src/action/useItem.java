@@ -4,6 +4,7 @@
 package action;
 
 import character.Player;
+import item.Item;
 import room.room;
 import util.Input;
 
@@ -26,17 +27,12 @@ public class useItem implements action {
 
 	public void use() {
 		// TODO Auto-generated method stub
-		System.out.println("Il y a plus de monstre dans la salle "
-				+ "Vous devez quitter la salle");
-		System.out.print("Choississez la direction");
+		System.out.println("***********Choisissez une action à effectuer selon le numéro de l'objet ******************");
+		
 		
 		String res = Input.readString();
-		room salle = this.r.getDirection().get(res);
-		if (!this.r.isthereMonster()) {
-			this.p.setRoom(salle);
-		}
-		
-		
+		Item i = this.r.getItemWithIndex(Integer.parseInt(res));
+		i.use(this.p);
 
 	}
 
@@ -48,6 +44,11 @@ public class useItem implements action {
 	public room getRoom() {
 		// TODO Auto-generated method stub
 		return this.r;
+	}
+
+	public boolean isPossible() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

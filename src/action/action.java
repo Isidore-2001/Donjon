@@ -14,6 +14,8 @@ public interface action {
 	
 	public void use () throws Exception;
 	
+	public boolean isPossible();
+	
 	public Player getPlayer();
 	
 	public room getRoom();

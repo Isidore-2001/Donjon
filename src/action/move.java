@@ -39,4 +39,11 @@ public class move implements action {
 		return this.r;
 	}
 
+	public boolean isPossible() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	
+	
+
 }

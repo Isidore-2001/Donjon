@@ -6,7 +6,12 @@ package character;
 
 
 import java.util.ArrayList;
+import java.util.Map;
 
+import action.action;
+import exception.NoActionException;
+import item.Item;
+import room.Direction;
 import room.room;
 
 /**
@@ -25,12 +30,8 @@ public class Player extends Character{
 	
 	
 	
-	public ArrayList<Action> getAllPossibilityAction(){
+	public ArrayList<action> getAllPossibilityAction(){
 		return this.room.getActions();
-	}
-	
-	public void addAction(Action a) {
-		this.room.addActions(a);
 	}
 	
 	public String descrition() {
@@ -41,21 +42,21 @@ public class Player extends Character{
 	}
 	
 	public void descriptionActions() {
-		System.out.println("Voici les actions possible de faire : ")
-		for(Action a : this.getAllPossibilityAction()) {
+		System.out.println("Voici les actions possible de faire : ");
+		for(action a : this.room.getAllPossibilitiesActions()) {
 			System.out.println(a);
 		}
 		
 		
 	}
 	
-	public void doAction(Action a) throws NoActionException{
-		if (this.getAllPossibilityAction().contains(a)) {
-			a.realise(this);
+	public void doAction(action a) throws Exception{
+		if (this.room.getAllPossibilitiesActions().contains(a)) {
+			a.use();
 		}
 		
 		else {
-			throw new NoActionException();
+			throw new NoActionException("Cette action n'est pas présente");
 		}
 	}
 	
@@ -88,19 +89,16 @@ public class Player extends Character{
 		this.addGold(g);
 	}
 		
-	public void addAction(Action a) {
+	public void addAction(action a) {
 		this.room.addActions(a);
 		
 	}
-	public void setAction(Action a, Action b) {
-		this.room.getActions().set(a,b);
-	}
 	
 	public void changeRoom(Direction d) {
-		this.room = this.changeRoom(d);
+		this.room = this.room.getDirection().get(d);
 	}
 	
-	public void removeAction(Action a) {
+	public void removeAction(action a) {
 		this.room.removeActions(a);
 	}
 	

@@ -1,11 +1,13 @@
-/**
- * 
- */
 package room;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import action.action;
+import character.Player;
+import item.Item;
+import character.Monster;
 
 /**
  * @author amevigbe
@@ -19,7 +21,7 @@ public class room {
 	protected static int NombreSalle;
 	protected int NumeroSalle;
 	protected Player player;
-	protected ArrayList<Action> action;
+	protected ArrayList<action> action;
 	protected ArrayList<Item> item;
 	protected ArrayList<Monster> monster;
 	protected Map<Direction, room> direction;
@@ -30,21 +32,21 @@ public class room {
 	 */
 	public room() {
 		// TODO Auto-generated constructor stub
-		this.action = new ArrayList<>();
-		this.item = new ArrayList<>();
-		this.monster = new ArrayList<>();
+		this.action = new ArrayList<action>();
+		this.item = new ArrayList<Item>();
+		this.monster = new ArrayList<Monster>();
 		this.direction = new HashMap<Direction , room>();
 		this.exit = false;
 	}
 
-	public ArrayList<Action> getActions() {
+	public ArrayList<action> getActions() {
 		return this.action;
 	}
 	/**
 	 * 
 	 * @param a l'action à ajouter dans la liste des actions de la salle
 	 */
-	public void addActions(Action a) {
+	public void addActions(action a) {
 		this.action.add(a);
 		
 	}
@@ -53,7 +55,7 @@ public class room {
 		return this.exit;
 	}
 	
-	public void removeActions(Action a) {
+	public void removeActions(action a) {
 		this.action.remove(a);
 	}
 	
@@ -113,9 +115,10 @@ public class room {
 	}
 	
 	
-	public boolean existMonster(Monster c) {
-		return this.monster.get(c) != null;
+	public Monster gettingMonster(int n) {
+		return this.monster.get(n);
 	}
+	
 	
 	
 	public room changeRoom (Direction d) {
@@ -123,6 +126,11 @@ public class room {
 			System.out.println("Il y a pas de salle associé à cette direction");
 		}
 		return this.direction.get(d);
+	}
+	
+	public ArrayList<action> getAllPossibilitiesActions() {
+		return this.action;
+		
 	}
 	
 	

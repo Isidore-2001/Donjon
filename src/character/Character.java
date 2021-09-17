@@ -3,7 +3,9 @@ package character;
  * 
  */
 
-import room.Monster;
+
+import character.Monster;
+import exception.NoMonsterException;
 import room.room;
 
 /**
@@ -53,14 +55,6 @@ public abstract class Character {
 	}
 
 	
-	public void substractStrenght(int g) throws NotEnoughStrenghException{
-		if(this.nbreStrength-g<0) {
-			throw new  NotEnoughStrenghException();
-		}
-		this.nbreStrength-=g;
-	}
-	
-	
 	public boolean isDead() {
 		return this.nbreVie <=0;
 	}
@@ -77,16 +71,18 @@ public abstract class Character {
 		this.nbreVie+=l;
 	}
 	
-	public void attack(Character c) throws NotMonsterInRoomException{
-		if (!this.room.existMonster(c)) {
-			throw new NotMonsterInRoomException();
+	
+	
+	public void attack(Character c) throws NoMonsterException{
+		if (!this.room.isthereMonster()) {
+			throw new NoMonsterException("Dans cette salle il y a pas de monstre");
 			
 		}
 		if (!c.isDead()) {
 			c.substractLife(this.nbreStrength);
 		}
 		else {
-			this.room.removeMonster(c);
+			this.room.removeMonster((Monster) c);
 			this.addGold(c.getGold());
 			System.out.println("Vous avez tué le monstre");
 		}

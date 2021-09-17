@@ -3,6 +3,8 @@
  */
 package character;
 
+import character.Character;
+
 /**
  * @author amevigbe
  *
